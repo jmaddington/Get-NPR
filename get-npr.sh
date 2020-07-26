@@ -66,6 +66,11 @@ esac
 
   #Give MP3s sensible filenames
   newFn=`echo $mp3|sed 's/\?/\ /g'|awk '{print $1}'`
+
+  #Process some basic mp3 tag info
+  artist="NPR"
+  mp3info -t "$newFN" -a "$artist" -l "$program - $year-$month-$day" -y "$year" "$mp3"
+
   echo Moving $mp3 to $newFn
 
   mkdir -p "$program/$folder/"
