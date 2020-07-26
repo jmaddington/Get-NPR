@@ -40,11 +40,35 @@ do
 
   folder="$year-$month-$day"
 
+  case $mp3 in
+
+  *"_me_"*)
+    program="Morning Edition"
+    ;;
+
+  *"_atc_"*)
+    program="All Things Considered"
+    ;;
+
+  *"_wesat_"*)
+    program="Weekend Edition Saturday"
+    ;;
+
+  *"_wesun_"*)
+    program="Weekend Edition Sunday"
+    ;;
+
+    *)
+      program="other"
+      ;;
+
+esac
+
   #Give MP3s sensible filenames
   newFn=`echo $mp3|sed 's/\?/\ /g'|awk '{print $1}'`
   echo Moving $mp3 to $newFn
 
-  mkdir -p $folder
-  mv $mp3 $folder/$newFn
+  mkdir -p "$program/$folder/"
+  mv $mp3 "$program/$folder/$newFn"
 
 done
